@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamasutra Moderne - 50 Positions Accessibles</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+        
+        :root {
+            --primary: #8B4513;
+            --secondary: #C19A6B;
+            --accent: #D4AF37;
+            --light: #F5F5DC;
+            --dark: #2F1B0C;
+            --text: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #F5F5DC 0%, #E8E4D5 100%);
+            color: var(--text);
+            width: 1600px;
+            height: 2560px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page {
+            width: 1600px;
+            height: 2560px;
+            position: relative;
+            background: white;
+            margin: 0 auto;
+            box-shadow: 0 0 50px rgba(0,0,0,0.1);
+            page-break-after: always;
+        }
+        
+        /* Couverture */
+        .cover {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        }
+        
+        .cover-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 120px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            line-height: 1.1;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .cover-subtitle {
+            font-size: 42px;
+            font-weight: 300;
+            margin-bottom: 80px;
+            opacity: 0.9;
+        }
+        
+        .cover-author {
+            font-size: 28px;
+            font-style: italic;
+            margin-top: 100px;
+        }
+        
+        /* Pages de contenu */
+        .content-page {
+            padding: 150px;
+            background: white;
+        }
+        
+        .chapter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 80px;
+            color: var(--primary);
+            margin-bottom: 60px;
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 20px;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            color: var(--secondary);
+            margin: 60px 0 30px 0;
+        }
+        
+        .position-card {
+            background: var(--light);
+            border-radius: 20px;
+            padding: 50px;
+            margin: 40px 0;
+            border-left: 5px solid var(--accent);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .position-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+        
+        .position-difficulty {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 22px;
+            margin-bottom: 25px;
+        }
+        
+        .position-description {
+            font-size: 28px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .position-steps {
+            font-size: 26px;
+            line-height: 1.5;
+            margin-left: 30px;
+        }
+        
+        .position-steps li {
+            margin-bottom: 15px;
+        }
+        
+        .illustration-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #E8E4D5 0%, #D4C9AC 100%);
+            border-radius: 15px;
+            margin: 30px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--dark);
+            font-style: italic;
+        }
+        
+        .tip-box {
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
+            border-left: 5px solid var(--accent);
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 10px;
+            font-size: 26px;
+        }
+        
+        .page-number {
+            position: absolute;
+            bottom: 80px;
+            right: 150px;
+            font-size: 22px;
+            color: var(--secondary);
+        }
+        
+        /* Table des matières */
+        .toc-page {
+            background: linear-gradient(135deg, #F5F5DC 0%, #E8E4D5 100%);
+            padding: 150px;
+        }
+        
+        .toc-item {
+            font-size: 32px;
+            margin: 20px 0;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(139, 69, 19, 0.2);
+        }
+        
+        .toc-item a {
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .toc-item a:hover {
+            color: var(--primary);
+        }
+        
+        /* Page de conclusion */
+        .conclusion-page {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 200px;
+        }
+        
+        .conclusion-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 80px;
+            margin-bottom: 50px;
+        }
+        
+        .conclusion-text {
+            font-size: 32px;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin-bottom: 60px;
+        }
+        
+        .download-btn {
+            background: var(--accent);
+            color: var(--dark);
+            padding: 25px 60px;
+            border-radius: 50px;
+            font-size: 28px;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 50px;
+            transition: transform 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Page de Couverture -->
+    <div class="page cover">
+        <h1 class="cover-title">Kamasutra Moderne</h1>
+        <p class="cover-subtitle">50 Positions Accessibles pour Tous les Corps</p>
+        <p class="cover-author">par Marcelle Tchouamouo</p>
+    </div>
+
+    <!-- Table des Matières -->
+    <div class="page toc-page">
+        <h2 class="chapter-title">Table des Matières</h2>
+        
+        <div class="toc-item">
+            <a href="#intro">Introduction - L'Art de l'Intimité Moderne</a>
+            <span>5</span>
+        </div>
+        
+        <div class="toc-item">
+            <a href="#basics">Les Bases Essentielles</a>
+            <span>12</span>
+        </div>
+        
+        <div class="toc-item">
+            <a href="#debutant">Niveau Débutant (15 positions)</a>
+            <span>18</span>
+        </div>
+        
+        <div class="toc-item">
+            <a href="#intermediaire">Niveau Intermédiaire (20 positions)</a>
+            <span>45</span>
+        </div>
+        
+        <div class="toc-item">
+            <a href="#avance">Niveau Avancé (15 positions)</a>
+            <span>78</span>
+        </div>
+        
+        <div class="toc-item">
+            <a href="#confort">Positions Spécial "Confort"</a>
+            <span>105</span>
+        </div>
+        
+        <div class="toc-item">
+            <a href="#sens">Le Rôle des Cinq Sens</a>
+            <span>120</span>
+        </div>
+        
+        <div class="toc-item">
+            <a href="#sante">Santé et Bien-être Intime</a>
+            <span>135</span>
+        </div>
+        
+        <div class="toc-item">
+            <a href="#flamme">Réinitialiser la Flamme</a>
+            <span>150</span>
+        </div>
+        
+        <div class="toc-item">
+            <a href="#conclusion">Conclusion - Votre Voyage Continue</a>
+            <span>165</span>
+        </div>
+        
+        <div class="page-number">2</div>
+    </div>
+
+    <!-- Introduction -->
+    <div class="page content-page">
+        <h2 class="chapter-title" id="intro">L'Art de l'Intimité Moderne</h2>
+        
+        <p style="font-size: 32px; line-height: 1.6; margin-bottom: 40px;">
+            Bienvenue dans cette redécouverte du Kamasutra, adapté aux couples d'aujourd'hui. 
+            Loin des clichés et des performances impossibles, ce guide vous propose une approche 
+            moderne de l'intimité, centrée sur le plaisir partagé et la connexion émotionnelle.
+        </p>
+        
+        <div class="tip-box">
+            <strong>💡 Conseil :</strong> Ce guide est conçu pour être exploré à deux. 
+            Prenez le temps de lire ensemble et de partager vos ressentis.
+        </div>
+        
+        <h3 class="section-title">Les 5 Principes Fondamentaux</h3>
+        
+        <div class="position-card">
+            <div class="position-name">1. Communication Ouverte</div>
+            <div class="position-description">
+                Parler de ses désirs et limites est la base d'une intimité épanouie. 
+                Apprenez à exprimer vos préférences avec bienveillance.
+            </div>
+        </div>
+        
+        <div class="position-card">
+            <div class="position-name">2. Consentement Actif</div>
+            <div class="position-description">
+                Le consentement n'est pas un acquis, mais un dialogue continu. 
+                Vérifiez régulièrement le confort de votre partenaire.
+            </div>
+        </div>
+        
+        <div class="position-card">
+            <div class="position-name">3. Adaptation aux Corps Réels</div>
+            <div class="position-description">
+                Chaque corps est unique. Adaptez les positions à votre morphologie, 
+                votre souplesse et votre confort.
+            </div>
+        </div>
+        
+        <div class="page-number">5</div>
+    </div>
+
+    <!-- Premier Chapitre de Positions -->
+    <div class="page content-page">
+        <h2 class="chapter-title" id="debutant">Niveau Débutant</h2>
+        <p style="font-size: 28px; margin-bottom: 50px; color: var(--secondary);">
+            Positions confortables et stables, parfaites pour commencer votre exploration
+        </p>
+
+        <!-- Position 1 -->
+        <div class="position-card">
+            <div class="position-name">La Vague Douce</div>
+            <div class="position-difficulty">⭐ Débutant</div>
+            <div class="position-description">
+                Une position basique mais profondément intime, permettant un contact visuel constant 
+                et des caresses facilement accessibles.
+            </div>
+            
+            <div class="illustration-placeholder">
+                [Illustration : Partenaire A allongé sur le dos, Partenaire B assis face à A, jambes entrelacées]
+            </div>
+            
+            <ul class="position-steps">
+                <li>Partenaire A s'allonge confortablement sur le dos</li>
+                <li>Partenaire B s'assoit entre les jambes de A, face à lui/elle</li>
+                <li>Entrelacez vos jambes pour plus de stabilité</li>
+                <li>Maintenez un contact visuel et des caresses</li>
+                <li>Rythme lent et contrôlé pour commencer</li>
+            </ul>
+            
+            <div class="tip-box">
+                <strong>🌟 Avantages :</strong> Contact visuel intense, caresses faciles, 
+                adaptation simple aux différents corps.
+            </div>
+        </div>
+
+        <!-- Position 2 -->
+        <div class="position-card">
+            <div class="position-name">L'Entrelacement Complice</div>
+            <div class="position-difficulty">⭐ Débutant</div>
+            <div class="position-description">
+                Position latérale offrant intimité et confort, idéale pour les moments de tendresse 
+                et les relations prolongées.
+            </div>
+            
+            <div class="illustration-placeholder">
+                [Illustration : Les deux partenaires allongés sur le côté, face à face, jambes entrelacées]
+            </div>
+            
+            <ul class="position-steps">
+                <li>Allongez-vous tous les deux sur le côté, face à face</li>
+                <li>Entrelacez vos jambes supérieures</li>
+                <li>Placez un bras sous la tête de votre partenaire</li>
+                <li>Utilisez l'autre main pour des caresses</li>
+                <li>Mouvements lents et circulaires</li>
+            </ul>
+            
+            <div class="tip-box">
+                <strong>💖 Parfait pour :</strong> Les soirées romantiques, les relations lentes, 
+                les moments de profonde connexion.
+            </div>
+        </div>
+
+        <div class="page-number">18</div>
+    </div>
+
+    <!-- Page d'exemple Intermédiaire -->
+    <div class="page content-page">
+        <h2 class="chapter-title" id="intermediaire">Niveau Intermédiaire</h2>
+
+        <!-- Position 3 -->
+        <div class="position-card">
+            <div class="position-name">La Danse des Sens</div>
+            <div class="position-difficulty">⭐⭐ Intermédiaire</div>
+            <div class="position-description">
+                Une position qui combine profondeur et mobilité, permettant une exploration 
+                sensorielle complète avec un bon équilibre.
+            </div>
+            
+            <div class="illustration-placeholder">
+                [Illustration : Partenaire A allongé, Partenaire B à genoux, légèrement surélevé]
+            </div>
+            
+            <ul class="position-steps">
+                <li>Partenaire A s'allonge sur le dos</li>
+                <li>Partenaire B se met à genoux entre les jambes de A</li>
+                <li>Soulevez légèrement le bassin de A avec un coussin</li>
+                <li>Maintenez un rythme régulier</li>
+                <li>Utilisez les mains pour caresses et stimulations</li>
+            </ul>
+        </div>
+
+        <!-- Position 4 -->
+        <div class="position-card">
+            <div class="position-name">L'Équilibre Parfait</div>
+            <div class="position-difficulty">⭐⭐ Intermédiaire</div>
+            <div class="position-description">
+                Position assise offrant intimité profonde et possibilité de mouvements variés, 
+                idéale pour une connexion intense.
+            </div>
+            
+            <div class="illustration-placeholder">
+                [Illustration : Partenaire B assis, Partenaire A assis sur les genoux de B, face à face]
+            </div>
+            
+            <ul class="position-steps">
+                <li>Partenaire B s'assoit confortablement, dos soutenu</li>
+                <li>Partenaire A s'assoit sur les genoux de B, face à lui/elle</li>
+                <li>Enlacez-vous pour plus de stabilité</li>
+                <li>Mouvements de bassin contrôlés</li>
+                <li>Alterner entre profondeur et stimulation clitoridienne</li>
+            </ul>
+        </div>
+
+        <div class="page-number">45</div>
+    </div>
+
+    <!-- Page de Conclusion -->
+    <div class="page conclusion-page">
+        <h2 class="conclusion-title">Votre Voyage Continue</h2>
+        
+        <p class="conclusion-text">
+            Félicitations ! Vous avez découvert les bases du Kamasutra Moderne. 
+            Souvenez-vous que l'essentiel n'est pas la performance, mais la connexion 
+            partagée et le plaisir mutuel.
+        </p>
+        
+        <p class="conclusion-text">
+            Continuez à explorer, à communiquer et à adapter ces positions à votre 
+            relation unique. L'intimité est un voyage, pas une destination.
+        </p>
+        
+        <p class="conclusion-text" style="font-style: italic; margin-top: 80px;">
+            "La plus belle des positions est celle où deux cœurs se rencontrent dans le plaisir partagé."
+        </p>
+        
+        <a href="#" class="download-btn" onclick="window.print()">
+            📥 Télécharger le PDF Complet
+        </a>
+        
+        <div class="page-number">175</div>
+    </div>
+
+    <script>
+        // Script pour le téléchargement PDF
+        function downloadPDF() {
+            window.print();
+        }
+        
+        // Ajout d'interactivité pour le téléchargement
+        document.addEventListener('DOMContentLoaded', function() {
+            const downloadBtn = document.querySelector('.download-btn');
+            if (downloadBtn) {
+                downloadBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.print();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
