@@ -44,6 +44,41 @@
             position: relative;
         }
         
+        /* Photo Upload Section */
+        .photo-upload {
+            background: white;
+            padding: 40px;
+            text-align: center;
+            border-bottom: 3px solid var(--accent);
+        }
+        
+        .upload-btn {
+            background: var(--primary);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .upload-btn:hover {
+            background: var(--dark);
+            transform: translateY(-2px);
+        }
+        
+        .photo-preview {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent);
+            margin: 20px auto;
+            display: none;
+        }
+        
         /* Couverture AVANT */
         .cover-front {
             background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
@@ -209,18 +244,57 @@
             margin-bottom: 10px;
         }
         
-        .illustration-placeholder {
+        .illustration {
             width: 100%;
             height: 200px;
-            background: linear-gradient(135deg, #E8E4D5 0%, #D4C9AC 100%);
+            background: linear-gradient(45deg, #E8E4D5, #D4C9AC);
             border-radius: 10px;
             margin: 20px 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
-            color: var(--dark);
-            font-style: italic;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .silhouette {
+            width: 80%;
+            height: 80%;
+            background: 
+                radial-gradient(circle at 30% 40%, var(--primary) 20px, transparent 20px),
+                radial-gradient(circle at 70% 40%, var(--primary) 20px, transparent 20px),
+                ellipse at center 65% / 60% 30% var(--primary);
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .silhouette::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 40%, var(--primary) 20px, transparent 20px),
+                radial-gradient(circle at 70% 40%, var(--primary) 20px, transparent 20px),
+                ellipse at center 65% / 60% 30% var(--primary);
+            border-radius: 50%;
+            transform: scale(0.8);
+        }
+        
+        .couple-silhouette {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .silhouette-1, .silhouette-2 {
+            width: 40%;
+            height: 70%;
+            background: var(--primary);
+            border-radius: 50%;
+            position: relative;
         }
         
         .tip-box {
@@ -297,27 +371,12 @@
             transform: translateY(-3px);
         }
         
-        /* Pied de page amélioré */
         .footer {
             text-align: center;
             margin-top: 50px;
             padding-top: 20px;
             border-top: 2px solid var(--primary);
             color: var(--text);
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-        
-        .footer-link {
-            color: var(--primary);
-            text-decoration: none;
-            font-size: 0.9rem;
         }
         
         .copyright {
@@ -354,12 +413,34 @@
                 font-size: 2rem;
             }
         }
+
+        @media print {
+            .photo-upload {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Section Upload Photo -->
+    <div class="photo-upload">
+        <h2 style="color: var(--primary); margin-bottom: 20px;">📸 Personnalise ton Ebook</h2>
+        <button class="upload-btn" onclick="document.getElementById('photoInput').click()">
+            <i class="fas fa-camera"></i> Choisir ma photo
+        </button>
+        <input type="file" id="photoInput" accept="image/*" style="display: none;" onchange="handlePhotoUpload(event)">
+        <img id="photoPreview" class="photo-preview" alt="Aperçu photo">
+        <p style="color: var(--secondary); margin-top: 10px; font-size: 0.9rem;">
+            Ta photo apparaîtra sur la couverture de l'ebook
+        </p>
+    </div>
+
     <!-- Couverture AVANT -->
     <div class="page cover-front">
-        <img src="images/05fedfd-8eae-4778-9870-1c2dff8bd6f7.jpeg" alt="Marcelle Tchouamouo" class="author-photo">
+        <img id="coverPhoto" src="" alt="Marcelle Tchouamouo" class="author-photo" style="display: none;">
+        <div id="defaultPhoto" class="author-photo" style="background: var(--accent); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+            👩‍💻
+        </div>
         <h1 class="cover-title">Kamasutra Moderne</h1>
         <p class="cover-subtitle">50 Positions Accessibles pour Tous les Corps</p>
         <div class="badge">Guide Complet d'Intimité</div>
@@ -399,6 +480,26 @@
             <span>105</span>
         </div>
         
+        <div class="toc-item">
+            <a href="#sens">Le Rôle des Cinq Sens</a>
+            <span>120</span>
+        </div>
+        
+        <div class="toc-item">
+            <a href="#sante">Santé et Bien-être Intime</a>
+            <span>135</span>
+        </div>
+        
+        <div class="toc-item">
+            <a href="#flamme">Réinitialiser la Flamme</a>
+            <span>150</span>
+        </div>
+        
+        <div class="toc-item">
+            <a href="#conclusion">Conclusion - Votre Voyage Continue</a>
+            <span>165</span>
+        </div>
+        
         <div class="page-number">2</div>
     </div>
 
@@ -413,88 +514,213 @@
         </p>
         
         <div class="tip-box">
-            <strong>💡 Conseil :</strong> Ce guide est conçu pour être exploré à deux. 
-            Prenez le temps de lire ensemble et de partager vos ressentis.
+            <strong>💡 Conseil Expert :</strong> Ce guide est conçu pour être exploré à deux. 
+            Prenez le temps de lire ensemble et de partager vos ressentis. La communication 
+            est la clé d'une intimité épanouie.
         </div>
         
-        <h3 class="section-title">Les 5 Principes Fondamentaux</h3>
+        <h3 class="section-title">Les 5 Principes Fondamentaux du Kamasutra Moderne</h3>
         
         <div class="position-card">
-            <div class="position-name">1. Communication Ouverte</div>
+            <div class="position-name">1. Communication Bienveillante</div>
             <div class="position-description">
-                Parler de ses désirs et limites est la base d'une intimité épanouie. 
-                Apprenez à exprimer vos préférences avec bienveillance.
+                Apprenez à exprimer vos désirs, vos limites et vos préférences avec bienveillance. 
+                Une communication ouverte est le fondement de toute intimité épanouie.
+            </div>
+            <div class="illustration">
+                <div class="silhouette"></div>
             </div>
         </div>
         
         <div class="position-card">
-            <div class="position-name">2. Consentement Actif</div>
+            <div class="position-name">2. Consentement Actif et Continu</div>
             <div class="position-description">
-                Le consentement n'est pas un acquis, mais un dialogue continu. 
-                Vérifiez régulièrement le confort de votre partenaire.
+                Le consentement n'est pas un acquis, mais un dialogue permanent. Vérifiez 
+                régulièrement le confort et l'enthousiasme de votre partenaire.
+            </div>
+            <div class="illustration">
+                <div class="couple-silhouette">
+                    <div class="silhouette-1"></div>
+                    <div class="silhouette-2"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="position-card">
+            <div class="position-name">3. Adaptation aux Corps Réels</div>
+            <div class="position-description">
+                Chaque corps est unique. Adaptez les positions à votre morphologie, 
+                votre souplesse et votre confort. L'important n'est pas la performance 
+                mais le plaisir partagé.
             </div>
         </div>
         
         <div class="page-number">5</div>
     </div>
 
-    <!-- Premier Chapitre de Positions -->
+    <!-- Chapitre Débutant -->
     <div class="page content-page">
         <h2 class="chapter-title" id="debutant">Niveau Débutant</h2>
         <p style="font-size: 1rem; margin-bottom: 30px; color: var(--secondary);">
-            Positions confortables et stables, parfaites pour commencer votre exploration
+            Positions confortables et stables, parfaites pour commencer votre exploration en douceur
         </p>
 
         <!-- Position 1 -->
         <div class="position-card">
-            <div class="position-name">La Vague Douce</div>
+            <div class="position-name">La Vague Douce 🌊</div>
             <div class="position-difficulty">⭐ Débutant</div>
             <div class="position-description">
                 Une position basique mais profondément intime, permettant un contact visuel constant 
-                et des caresses facilement accessibles.
+                et des caresses facilement accessibles. Idéale pour les moments de tendresse.
             </div>
             
-            <div class="illustration-placeholder">
-                [Illustration : Position La Vague Douce]
+            <div class="illustration">
+                <div class="couple-silhouette">
+                    <div class="silhouette-1"></div>
+                    <div class="silhouette-2"></div>
+                </div>
             </div>
             
+            <h4 style="color: var(--primary); margin: 20px 0 10px 0;">📝 Étapes :</h4>
             <ul class="position-steps">
                 <li>Partenaire A s'allonge confortablement sur le dos</li>
                 <li>Partenaire B s'assoit entre les jambes de A, face à lui/elle</li>
                 <li>Entrelacez vos jambes pour plus de stabilité</li>
                 <li>Maintenez un contact visuel et des caresses</li>
-                <li>Rythme lent et contrôlé pour commencer</li>
+                <li>Commencez avec un rythme lent et contrôlé</li>
             </ul>
             
             <div class="tip-box">
                 <strong>🌟 Avantages :</strong> Contact visuel intense, caresses faciles, 
-                adaptation simple aux différents corps.
+                adaptation simple aux différents corps. Parfait pour les premiers essais.
             </div>
         </div>
 
         <!-- Position 2 -->
         <div class="position-card">
-            <div class="position-name">L'Entrelacement Complice</div>
+            <div class="position-name">L'Entrelacement Complice 💫</div>
             <div class="position-difficulty">⭐ Débutant</div>
             <div class="position-description">
-                Position latérale offrant intimité et confort, idéale pour les moments de tendresse 
-                et les relations prolongées.
+                Position latérale offrant intimité et confort maximal, idéale pour les moments 
+                de tendresse et les relations prolongées. Permet des caresses et des baisers faciles.
             </div>
             
-            <div class="illustration-placeholder">
-                [Illustration : Position Entrelacement Complice]
+            <div class="illustration">
+                <div class="couple-silhouette">
+                    <div class="silhouette-1"></div>
+                    <div class="silhouette-2"></div>
+                </div>
             </div>
             
+            <h4 style="color: var(--primary); margin: 20px 0 10px 0;">📝 Étapes :</h4>
             <ul class="position-steps">
                 <li>Allongez-vous tous les deux sur le côté, face à face</li>
-                <li>Entrelacez vos jambes supérieures</li>
-                <li>Placez un bras sous la tête de votre partenaire</li>
-                <li>Utilisez l'autre main pour des caresses</li>
-                <li>Mouvements lents et circulaires</li>
+                <li>Entrelacez vos jambes supérieures naturellement</li>
+                <li>Placez un bras sous la tête de votre partenaire comme oreiller</li>
+                <li>Utilisez l'autre main pour des caresses et des effleurements</li>
+                <li>Adoptez des mouvements lents et circulaires</li>
+            </ul>
+            
+            <div class="tip-box">
+                <strong>💖 Parfait pour :</strong> Les soirées romantiques, les relations lentes, 
+                les moments de profonde connexion émotionnelle.
+            </div>
+        </div>
+
+        <!-- Position 3 -->
+        <div class="position-card">
+            <div class="position-name">Le Berceau Tendre 🛌</div>
+            <div class="position-difficulty">⭐ Débutant</div>
+            <div class="position-description">
+                Position extrêmement confortable qui crée un sentiment de sécurité et de protection. 
+                Idéale pour une intimité douce et rassurante.
+            </div>
+            
+            <div class="illustration">
+                <div class="couple-silhouette">
+                    <div class="silhouette-1"></div>
+                    <div class="silhouette-2"></div>
+                </div>
+            </div>
+            
+            <h4 style="color: var(--primary); margin: 20px 0 10px 0;">📝 Étapes :</h4>
+            <ul class="position-steps">
+                <li>Partenaire A s'allonge sur le côté en position fœtale</li>
+                <li>Partenaire B se place derrière A, enveloppant A de ses bras</li>
+                <li>Bercez-vous doucement dans un mouvement harmonieux</li>
+                <li>Chuchotez des mots douces à l'oreille</li>
+                <li>Maintenez un contact peau à peau maximal</li>
             </ul>
         </div>
 
         <div class="page-number">18</div>
+    </div>
+
+    <!-- Chapitre Intermédiaire -->
+    <div class="page content-page">
+        <h2 class="chapter-title" id="intermediaire">Niveau Intermédiaire</h2>
+        <p style="font-size: 1rem; margin-bottom: 30px; color: var(--secondary);">
+            Pour les couples qui souhaitent explorer de nouvelles sensations et approfondir leur connexion
+        </p>
+
+        <!-- Position 4 -->
+        <div class="position-card">
+            <div class="position-name">La Danse des Sens 💃</div>
+            <div class="position-difficulty">⭐⭐ Intermédiaire</div>
+            <div class="position-description">
+                Une position qui combine profondeur et mobilité, permettant une exploration 
+                sensorielle complète avec un excellent équilibre. Stimule tous les sens.
+            </div>
+            
+            <div class="illustration">
+                <div class="couple-silhouette">
+                    <div class="silhouette-1"></div>
+                    <div class="silhouette-2"></div>
+                </div>
+            </div>
+            
+            <h4 style="color: var(--primary); margin: 20px 0 10px 0;">📝 Étapes :</h4>
+            <ul class="position-steps">
+                <li>Partenaire A s'allonge sur le dos</li>
+                <li>Partenaire B se met à genoux entre les jambes de A</li>
+                <li>Soulevez légèrement le bassin de A avec un coussin moelleux</li>
+                <li>Maintenez un rythme régulier et sensuel</li>
+                <li>Utilisez les mains pour des caresses et stimulations supplémentaires</li>
+            </ul>
+            
+            <div class="tip-box">
+                <strong>🎯 Conseil :</strong> Ajoutez de la musique douce et des lumières tamisées 
+                pour créer une ambiance sensorielle complète.
+            </div>
+        </div>
+
+        <!-- Position 5 -->
+        <div class="position-card">
+            <div class="position-name">L'Équilibre Parfait ⚖️</div>
+            <div class="position-difficulty">⭐⭐ Intermédiaire</div>
+            <div class="position-description">
+                Position assise offrant intimité profonde et possibilité de mouvements variés. 
+                Excellente pour une connexion intense et des regards profonds.
+            </div>
+            
+            <div class="illustration">
+                <div class="couple-silhouette">
+                    <div class="silhouette-1"></div>
+                    <div class="silhouette-2"></div>
+                </div>
+            </div>
+            
+            <h4 style="color: var(--primary); margin: 20px 0 10px 0;">📝 Étapes :</h4>
+            <ul class="position-steps">
+                <li>Partenaire B s'assoit confortablement, dos bien soutenu</li>
+                <li>Partenaire A s'assoit sur les genoux de B, face à lui/elle</li>
+                <li>Enlacez-vous étroitement pour plus de stabilité</li>
+                <li>Mouvements de bassin contrôlés et sensuels</li>
+                <li>Alternez entre profondeur et stimulation clitoridienne</li>
+            </ul>
+        </div>
+
+        <div class="page-number">45</div>
     </div>
 
     <!-- Couverture ARRIÈRE -->
@@ -513,6 +739,10 @@
             <div class="contact-item">
                 <i class="fas fa-book"></i> Ebook écrit par Marcelle Tchouamouo
             </div>
+
+            <div class="contact-item">
+                <i class="fas fa-graduation-cap"></i> Experte en Relations Intimes
+            </div>
         </div>
 
         <div class="social-links">
@@ -528,19 +758,71 @@
         </div>
 
         <div style="text-align: center; margin-top: 40px;">
-            <p style="font-style: italic; margin-bottom: 20px;">
-                "L'intimité partagée est la plus belle des connexions"
+            <p style="font-style: italic; margin-bottom: 20px; font-size: 1.1rem;">
+                "L'intimité partagée est la plus belle des connexions humaines"
             </p>
-            <div class="badge">Version 1.0 - 2024</div>
+            <div class="badge">Édition Spéciale 2024</div>
+        </div>
+
+        <div class="footer" style="color: white; margin-top: 50px;">
+            <div class="copyright">
+                © 2024 Marcelle Tchouamouo - Tous droits réservés
+            </div>
         </div>
     </div>
 
     <script>
+        // Gestion de l'upload de photo
+        function handlePhotoUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('photoPreview');
+                    const coverPhoto = document.getElementById('coverPhoto');
+                    const defaultPhoto = document.getElementById('defaultPhoto');
+                    
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    
+                    coverPhoto.src = e.target.result;
+                    coverPhoto.style.display = 'block';
+                    defaultPhoto.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Sauvegarde automatique dans le localStorage
+        function savePhotoToStorage(photoData) {
+            localStorage.setItem('ebookCoverPhoto', photoData);
+        }
+
+        // Chargement de la photo sauvegardée
+        function loadSavedPhoto() {
+            const savedPhoto = localStorage.getItem('ebookCoverPhoto');
+            if (savedPhoto) {
+                const coverPhoto = document.getElementById('coverPhoto');
+                const defaultPhoto = document.getElementById('defaultPhoto');
+                const preview = document.getElementById('photoPreview');
+                
+                coverPhoto.src = savedPhoto;
+                coverPhoto.style.display = 'block';
+                defaultPhoto.style.display = 'none';
+                preview.src = savedPhoto;
+                preview.style.display = 'block';
+            }
+        }
+
+        // Téléchargement PDF
         function downloadPDF() {
             window.print();
         }
-        
+
+        // Chargement au démarrage
         document.addEventListener('DOMContentLoaded', function() {
+            loadSavedPhoto();
+            
             const downloadBtn = document.querySelector('.download-btn');
             if (downloadBtn) {
                 downloadBtn.addEventListener('click', function(e) {
